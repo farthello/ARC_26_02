@@ -21,6 +21,15 @@ except OSError:
 # Your script goes here
 
 # Test if everything works:
-spaces = model.by_type("IfcSpace")
-for space in spaces:
-    print(space.LongName)
+spaces_required = 21
+spaces_in_model = 0
+
+for entity in model.by_type("IfcSpace"):
+    spaces_in_model+=1
+
+print(f"\nThere are {spaces_in_model} spaces in the model")
+
+if spaces_required is spaces_in_model:
+    print ('RESULT: The number of spaces is correct')
+else:
+    print ('RESULT: The number of spaces is wrong')
