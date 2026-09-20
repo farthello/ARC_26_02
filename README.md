@@ -10,58 +10,73 @@ Group 2.
 
 Architecture — windows and natural light.
 
-Our selected investigation concerns the definition and reproducibility of floor area. A consistent area definition is relevant when relating window area to floor area in an architectural assessment; this investigation does not yet evaluate daylight performance.
+For this investigation, we are looking at the floor area of the existing building and whether the value stated in the client report can be reproduced from the IFC model.
+
+Floor area is relevant to our focus area because it can later be compared with window area when assessing the relationship between windows and the spaces they serve. At this stage, we are only investigating the floor area and not the daylight performance itself.
 
 ## Selected claim and source
 
-- **Report:** Existing Building Report, Team 26 06.
-- **Location:** Section 2.3.
-- **Claim to investigate:** The reported floor area of the existing building.
-- **Model available in this repository:** [B308X.ifc](model/B308X.ifc).
+- **Report:** Existing Building Report, Team 26 06
+- **Location:** Section 2.3
+- **Claim:** Reported floor area of the existing building
+- **IFC model:** [B308X.ifc](model/B308X.ifc)
 
-The report reference comes from our initial project notes. The exact area value, unit, and wording still need to be recorded from Section 2.3 before completing a numerical comparison. We also need to confirm that the model and report describe the same building scope and revision.
+Before making a numerical comparison, we need to confirm the exact area stated in Section 2.3, including the unit and how the area has been defined. We also need to make sure that the report and IFC model cover the same parts and revision of the building.
 
 ## Identified issue and possible causes
 
-Our initial review identified that the reported floor area could not be directly reproduced from the IFC model. The notes indicate that the report does not specify whether the figure is gross or net floor area, or which calculation standard was used. Without a shared definition and scope, the reported and model-derived values cannot be reliably compared.
+From our initial review, the reported floor area cannot be directly reproduced from the IFC model.
+
+One issue is that it is not clear whether the reported value refers to gross or net floor area, or which method has been used to calculate it. Without the same definition and building scope, comparing the report directly with an IFC-derived value could give a misleading result.
 
 | Perspective | Assessment |
 | --- | --- |
-| Design / reporting | The primary issue identified in our notes is an unclear area definition in the report. This limits verification of the analysis; it does not establish an error in the physical design. |
-| Modelling | Missing or inconsistent space boundaries, area quantities, or storey coverage could affect an area total. These are possible causes to investigate, not confirmed model defects. |
-| Tools | A calculation could select the wrong quantities or combine values with different definitions or units. The current scripts count spaces and do not yet check floor area. No defect in IfcOpenShell has been established. |
+| Design / reporting | The report does not clearly define how the floor area has been calculated. This makes the stated value difficult to verify, but does not necessarily mean that the value itself is incorrect. |
+| Modelling | Missing or inconsistent space boundaries, area quantities or storey coverage could affect the calculated floor area. These need to be checked before concluding that there is an issue with the model. |
+| Tools | The script needs to use quantities that match the agreed area definition. Using the wrong IFC quantities, units or elements could produce a different result even if the model itself is correct. |
 
 ## Possible solutions
 
 ### Design / reporting
 
-State whether the reported area is gross or net, identify the calculation standard, and describe the included floors and any exclusions. Present the value and unit alongside this method so another person can reproduce the result.
+The reported floor area should include a clear definition of what is being measured, for example gross or net floor area. The calculation method, included floors and any excluded areas should also be stated. This would make it possible to reproduce and verify the reported value.
 
 ### Modelling
 
-Check that the relevant spaces and storeys cover the scope of the report. Inspect their boundaries and available area quantities. Where information is missing or inconsistent, propose corrections and record the area definition used before recalculating totals.
+The relevant `IfcSpace` entities and building storeys should be checked to see whether they represent the full scope used in the report. Their boundaries and available area quantities should also be inspected.
+
+If information is missing or inconsistent, this should be documented before calculating the total area.
 
 ### Tools
 
-Extend the IfcOpenShell script to inspect available area quantities and extract those matching the agreed definition. Report each contributing element's identifier, storey, quantity name, value, and unit. Flag missing quantities rather than treating them as zero, and compare the resulting total with the report using an explicitly stated tolerance.
+The IfcOpenShell script can be extended to extract the available area quantities from the model.
+
+For each area included in the calculation, the script should record:
+
+- IFC identifier
+- Storey
+- Quantity name
+- Area value
+- Unit
+
+Missing quantities should be flagged instead of being counted as zero. Once the area definition has been established, the calculated IFC area can be compared with the value from the client report.
 
 ## Verification status and next steps
 
-[main.py](main.py) currently opens the IFC model and counts `IfcSpace` entities. The configured requirement of 21 spaces is a separate check and does not verify the floor-area claim. A text inspection of the IFC file found three `IFCSPACE` records; this alone does not establish whether the model's spatial coverage is complete.
+The current [main.py](main.py) opens the IFC model and counts `IfcSpace` entities. The requirement of 21 spaces is a separate model check and does not verify the floor-area claim.
 
-To complete the investigation:
+The IFC file currently contains three `IfcSpace` records. However, the number of spaces alone is not enough to determine whether the spatial coverage of the model is complete or whether the reported floor area can be reproduced.
 
-1. Record the exact reported area and unit from Section 2.3 and confirm its definition and scope.
-2. Inspect the corresponding model quantities, units, and spatial coverage.
-3. Implement and run the area comparison, documenting assumptions and any missing data.
-4. Record whether the claim is supported, contradicted, or cannot be verified with the available information.
+The next steps are:
 
-**Current conclusion:** The floor-area claim remains unverified. The available work identifies a reproducibility concern but does not demonstrate a numerical discrepancy.
+1. Record the exact floor area and unit stated in Section 2.3.
+2. Determine how the reported floor area has been defined and which parts of the building are included.
+3. Inspect the area quantities, units and spatial coverage available in the IFC model.
+4. Extend the script to calculate the corresponding area from the IFC.
+5. Compare the two values and document any assumptions or missing information.
+6. Conclude whether the claim is supported, contradicted or cannot be verified from the available IFC information.
 
-## Submission checklist
+## Current conclusion
 
-The [Assignment 1 brief](https://timmcginley.github.io/41934/Assignments/A1.html) also requires issue logging and submission through the course channels:
+The reported floor area has not yet been verified from the IFC model. At this stage, the main issue is that the area definition and scope are not clear enough to make a reliable comparison.
 
-- [ ] Log the issue in the course Google form.
-- [ ] Ensure the submitted GitHub repository is public and contains the updated README.
-- [ ] Submit a `.txt` file containing the repository link to DTU Learn.
