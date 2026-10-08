@@ -1,16 +1,16 @@
-# A2 — Daylight checks and window-sizing support
+# A2 - Daylight checks and window-sizing support
 
 **Course:** 41934 Advanced BIM  
 **Group:** 10
 
 We will extend Group 10's daylight-checking workflow from 2025. Our aim is to show how much glazing a room lacks, which rooms need attention, and how proposed changes affect the result.
 
-## A2a — Group and focus
+## A2a - Group and focus
 
 - **Python confidence:** 3
 - **Focus area:** Indoor and Energy — daylight
 
-## A2b — Claim and starting point
+## A2b - Claim and starting point
 
 **Building:** Building \#2508
 
@@ -50,13 +50,13 @@ The architect provides the IFC model and confirms room uses and assumptions. The
 
 [SVG](A2\IMG\BPMN.svg)
 
-## A2d — Scope
+## A2d - Scope
 
 We will reuse reliable parts of the existing extraction and add data checks, derived measures, scenario comparisons and reporting. The first version will not modify the IFC model or generate geometry.
 
 Full daylight simulation, automatic geometric shading calculations, energy use, overheating, glare and cost calculations are outside this scope. They need information and methods beyond the existing area outputs.
 
-## A2e — Tool idea
+## A2e - Tool idea
 
 The Python/IfcOpenShell tool will produce a room table and storey summary. Each room will retain its IFC GUID so findings can be traced back to the model.
 
@@ -87,7 +87,7 @@ The tool reduces repeated calculations and gives the design team specific quanti
 
 We will compare selected model quantities and results with manual checks. Validation will cover rooms below, at and above the threshold, missing data, invalid areas, unit conversion and ambiguous window associations. Scenario calculations will also be checked manually.
 
-## A2f — Information requirements
+## A2f - Information requirements
 
 These are candidate sources. Their availability must be checked in the selected IFC model.
 
@@ -104,7 +104,7 @@ These are candidate sources. Their availability must be checked in the selected 
 
 We plan to retrieve entities with `ifc.by_type()` and inspect properties and quantities using IfcOpenShell utilities. Group 10 of 2025's proposed correction inputs cannot be assumed to exist in every IFC model.
 
-## A2g — Licence
+## A2g - Licence
 
 Group 10 of 2025's README states that they chose GPL 3.0. We propose GPL 3.0 for an extension that includes their GPL-covered code, subject to checking the repository's actual licence terms. We will retain the required attribution and licence notices.
 
