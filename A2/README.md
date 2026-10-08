@@ -8,7 +8,7 @@ We will extend Group 10's daylight-checking workflow from 2025. Our aim is to sh
 ## A2a - Group and focus
 
 - **Python confidence:** 3
-- **Focus area:** Indoor and Energy — daylight
+- **Focus area:** Indoor and Energy - daylight
 
 ## A2b - Claim and starting point
 
@@ -102,7 +102,7 @@ These are candidate sources. Their availability must be checked in the selected 
 | Transmittance and correction inputs | Verified model properties and supplementary correction records |
 | Units | `IfcProject.UnitsInContext` |
 
-We plan to retrieve entities with `ifc.by_type()` and inspect properties and quantities using IfcOpenShell utilities. Group 10 of 2025's proposed correction inputs cannot be assumed to exist in every IFC model.
+We plan to retrieve entities with `ifc.by_type()` and inspect properties and quantities using IfcOpenShell utilities.
 
 ## A2g - Licence
 
