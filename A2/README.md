@@ -48,7 +48,7 @@ The architect provides the IFC model and confirms room uses and assumptions. The
 5. Rank rooms for review and compare proposed window changes.
 6. Export the results, review the design and repeat after model revisions.
 
-[SVG](ARC_26_10\A2\IMG\bpmn_tool.svg)
+[SVG](A2/IMG/bpmn_workflow.svg)
 
 ## A2d - Scope
 
@@ -59,6 +59,8 @@ Full daylight simulation, automatic geometric shading calculations, energy use, 
 ## A2e - Tool idea
 
 The Python/IfcOpenShell tool will produce a room table and storey summary. Each room will retain its IFC GUID so findings can be traced back to the model.
+
+[SVG](A2/IMG/bpmn_tool.svg)
 
 Let `A_f` be the relevant floor area and `A_g` the corrected equivalent glass area, both in m². Corrections must follow the adopted BR18 guidance.
 
