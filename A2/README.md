@@ -48,7 +48,7 @@ The architect provides the IFC model and confirms room uses and assumptions. The
 5. Rank rooms for review and compare proposed window changes.
 6. Export the results, review the design and repeat after model revisions.
 
-[SVG](A2\IMG\BPMN.svg)
+[SVG](ARC_26_10\A2\IMG\bpmn_tool.svg)
 
 ## A2d - Scope
 
